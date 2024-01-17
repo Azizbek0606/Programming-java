@@ -52,13 +52,37 @@ public class Main
             }
         }
     }
-
-    static void alone() {
+    public static int choose_directory(){
+        Direction new_direction = new Direction();
+        Scanner scanner = new Scanner(System.in);
+        int result = 0;
+        ArrayList<String> input_battle_level = new ArrayList<>();
+        System.out.println("-----------------------------------------------------------------------");
+        System.out.println("Kerakli Musobaqa turini tanlang:\n");
+        for (int i = 0; i < new_direction.all_direction.length; i++){
+            System.out.println(i + 1 + " - " + new_direction.all_direction[i]);
+        }
+        System.out.println("-----------------------------------------------------------------------");
+        while (true){
+            System.out.println("Faqat son kiriting:\n");
+            int input_index = scanner.nextInt();
+            if(input_index >=1 && input_index <= 5){
+                result = input_index;
+                break;
+            }else{
+                continue;
+            }
+        }
+        return result - 1;
+    }
+    public static void alone(){
+        Direction main_direction = new Direction();
         int participantCount = getPositiveInput("\nIshtirokchi sonini kiriting: ");
         System.out.println("-----------------------------------------------------------------------");
         for (int i = 0; i < participantCount; i++) {
             participantArr.add(getParticipantName(i, "ishtirokchi ismini kiriting"));
         }
+        int main_num = choose_directory();
         System.out.println("-----------------------------------------------------------------------");
 
         System.out.println("\nO'yin boshlandi.\nJami ishtirokchilar soni " + participantCount + "ta ular:\n");
@@ -66,12 +90,17 @@ public class Main
         for (int i = 0; i < participantArr.size(); i++) {
             System.out.println((i + 1) + " - ishtirokchi: " + participantArr.get(i));
         }
+        System.out.println("Tanlangan yo'nalish: " + main_direction.all_direction[main_num]);
+        System.out.println("\n\nYonalish bosqichlar:\n");
+        for (int i =0; i <5;i++){
+            System.out.println(main_direction.all_lvl[main_num][i]);
+        }
         System.out.println("-----------------------------------------------------------------------");
         int gameCounter = 0;
         for (int i = 0; i < 5; i++) {
             System.out.println(
-                    "\n" + (gameCounter + 1) + " - bosqich yakunlandi\nishtirokchilarga " + (gameCounter + 1)
-                            + " - bosqich bo'yicha ball bering\n");
+                    "\n" + (gameCounter + 1) + " - bosqich yakunlandi\nishtirokchilarga " + main_direction.all_lvl[main_num][i]
+                            + " bo'yicha ball bering\n");
             ArrayList<Integer> limitedArrForBall = new ArrayList<>();
 
             for (int k = 0; k < participantArr.size(); k++) {
@@ -106,6 +135,7 @@ public class Main
     }
 
     static void team() {
+        Direction main_direction = new Direction();
         int groupCount = getPositiveInput("Gurux sonini kiriting:\n");
         int groupMember = getPositiveInput("Gurux a'zolari sonini kiriting:\n");
         System.out.println("-----------------------------------------------------------------------");
@@ -114,6 +144,12 @@ public class Main
         }
         for (int i = 0; i < groupMember * groupCount; i++) {
             participantTeamMembers.add(getParticipantName(i, "ishtirokchining ismi"));
+        }
+        int main_num = choose_directory();
+        System.out.println("Tanlangan yo'nalish: " + main_direction.all_direction[main_num]);
+        System.out.println("\n\nYonalish bosqichlar:\n");
+        for (int i =0; i <5;i++){
+            System.out.println(main_direction.all_lvl[main_num][i]);
         }
         System.out.println("-----------------------------------------------------------------------");
         System.out.println("\nO'yin boshlandi.\nJami ishtirokchilar soni " + groupMember * groupCount
@@ -126,8 +162,8 @@ public class Main
         int gameCounter = 0;
         for (int i = 0; i < 5; i++) {
             System.out.println(
-                    "\n" + (gameCounter + 1) + " - bosqich yakunlandi\nguruxlarga " + (gameCounter + 1)
-                            + " - bosqich bo'yicha ball bering\n");
+                    "\n" + (gameCounter + 1) + " - bosqich yakunlandi\nguruxlarga " + main_direction.all_lvl[main_num][i]
+                            + " bo'yicha ball bering\n");
             ArrayList<Integer> limitedArrForBall = new ArrayList<>();
 
             for (int k = 0; k < participantArr.size(); k++) {
@@ -189,4 +225,9 @@ public class Main
             }
         }
     }
+}
+
+class Direction{
+    String[] all_direction = {"English" , "Matematika" , "ITS" , "Programming" , "WebSte"};
+    String[][] all_lvl = {{"Listning" , "speaking" , "Reading" , "Writing" , "Grammer"},{"Sodda masalalar" , "Tenglamalar" , "Murakkab masalalar" , "Matritsalar" , "Triganometriya"},{"Infratuzulmalar" , "Biznes" , "ichki malumotlar" , "Tashqi malumotlar" , "Dasturiy taminit"},{"Java" , "Python" , "C++" , "Rubi" , "Dart"},{"HTML teglar" , "Css" , "SCSS" , "JS" , "React"}};
 }
