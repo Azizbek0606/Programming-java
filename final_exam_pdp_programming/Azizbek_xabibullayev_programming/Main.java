@@ -6,7 +6,6 @@ public class Main
     static ArrayList<String> participantArr = new ArrayList<>();
     static ArrayList<ArrayList<Integer>> participantBallArr = new ArrayList<>();
     static ArrayList<String> participantTeamMembers = new ArrayList<>();
-
     static int getPositiveInput(String innerText) {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -23,7 +22,6 @@ public class Main
             }
         }
     }
-
     static String getParticipantName(int index, String alertInput) {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -34,7 +32,6 @@ public class Main
             }
         }
     }
-
     static int getBallPlayers(int participantIndex, String inputText) {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -133,7 +130,6 @@ public class Main
         System.out.println("-----------------------------------------------------------------------");
         System.out.println("G'olib: " + participantArr.get(maxBallIndex) + "\njami to'plagan bali: " + maxBall);
     }
-
     static void team() {
         Direction main_direction = new Direction();
         int groupCount = getPositiveInput("Gurux sonini kiriting:\n");
@@ -197,7 +193,6 @@ public class Main
                 "G'olib: " + participantArr.get(maxBallIndex) + " guruhi\n. Jami to'plagan ballari: " + maxBall
                         + "\n\n");
     }
-
     public static void main(String[] args) {
         while (true) {
             System.out.println(
@@ -217,6 +212,7 @@ public class Main
                     } else if (inputIndicator == 2) {
                         team();
                     } else if (inputIndicator == 3) {
+                        System.out.println("Xayir salomat bo'ling !!!");
                         break;
                     }
                 }
@@ -229,5 +225,8 @@ public class Main
 
 class Direction{
     String[] all_direction = {"English" , "Matematika" , "ITS" , "Programming" , "WebSte"};
-    String[][] all_lvl = {{"Listning" , "speaking" , "Reading" , "Writing" , "Grammer"},{"Sodda masalalar" , "Tenglamalar" , "Murakkab masalalar" , "Matritsalar" , "Triganometriya"},{"Infratuzulmalar" , "Biznes" , "ichki malumotlar" , "Tashqi malumotlar" , "Dasturiy taminit"},{"Java" , "Python" , "C++" , "Rubi" , "Dart"},{"HTML teglar" , "Css" , "SCSS" , "JS" , "React"}};
+    String[][] all_lvl = {{"Listning" , "speaking" , "Reading" , "Writing" , "Grammer"},
+                          {"Sodda masalalar" , "Tenglamalar" , "Murakkab masalalar" , "Matritsalar" , "Triganometriya"},
+                          {"Infratuzulmalar" , "Biznes" , "ichki malumotlar" , "Tashqi malumotlar" , "Dasturiy taminit"},
+                          {"Java" , "Python" , "C++" , "Rubi" , "Dart"},{"HTML teglar" , "Css" , "SCSS" , "JS" , "React"}};
 }
